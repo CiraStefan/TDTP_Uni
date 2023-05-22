@@ -1,0 +1,421 @@
+{
+	"info": {
+		"_postman_id": "fd6e651f-b6b5-4f80-bc95-34ad0fb8e47a",
+		"name": "UseCaseTesting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27538972",
+		"_collection_link": "https://speeding-water-242932.postman.co/workspace/UseCaseTesting~0129f510-102f-4137-923d-b52e4317e999/collection/27538972-fd6e651f-b6b5-4f80-bc95-34ad0fb8e47a?action=share&creator=27538972&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Add to Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "items[product][product_id]",
+							"value": "153936",
+							"type": "text"
+						},
+						{
+							"key": "items[product][qty]",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://www.remedius.ro/cart/add.json",
+					"protocol": "https",
+					"host": [
+						"www",
+						"remedius",
+						"ro"
+					],
+					"path": [
+						"cart",
+						"add.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add to Cart Invalid QTY",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "items[0][product_id]",
+							"value": "153951",
+							"type": "text"
+						},
+						{
+							"key": "items[0][qty]",
+							"value": "-1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://www.remedius.ro/cart/add.json",
+					"protocol": "https",
+					"host": [
+						"www",
+						"remedius",
+						"ro"
+					],
+					"path": [
+						"cart",
+						"add.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add to Cart Fail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Failed POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([500, 404]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "items[0][product_id]",
+							"value": "0000",
+							"type": "text"
+						},
+						{
+							"key": "items[0][qty]",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://www.remedius.ro/cart/add.json",
+					"protocol": "https",
+					"host": [
+						"www",
+						"remedius",
+						"ro"
+					],
+					"path": [
+						"cart",
+						"add.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful GET request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.remedius.ro/cart?sections=cart_layout%2Ctransient_events&_=1684699606195",
+					"protocol": "https",
+					"host": [
+						"www",
+						"remedius",
+						"ro"
+					],
+					"path": [
+						"cart"
+					],
+					"query": [
+						{
+							"key": "sections",
+							"value": "cart_layout%2Ctransient_events"
+						},
+						{
+							"key": "_",
+							"value": "1684699606195"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cart Fail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Failed GET request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([500, 404]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.remedius.ro/cart?sections=aaaaa&_=1684699606195",
+					"protocol": "https",
+					"host": [
+						"www",
+						"remedius",
+						"ro"
+					],
+					"path": [
+						"cart"
+					],
+					"query": [
+						{
+							"key": "sections",
+							"value": "aaaaa"
+						},
+						{
+							"key": "_",
+							"value": "1684699606195"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "items[0][cart_id]",
+							"value": "1504989",
+							"type": "text"
+						},
+						{
+							"key": "items[0][qty]",
+							"value": "5",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://www.remedius.ro/cart/update.json",
+					"protocol": "https",
+					"host": [
+						"www",
+						"remedius",
+						"ro"
+					],
+					"path": [
+						"cart",
+						"update.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add to favorites",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "items[0][product_id]",
+							"value": "2222",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://www.remedius.ro/wishlist/add.json",
+					"protocol": "https",
+					"host": [
+						"www",
+						"remedius",
+						"ro"
+					],
+					"path": [
+						"wishlist",
+						"add.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add to favorites Fail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Failed POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([500, 404]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "items[0][product_id]",
+							"value": "aaa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://www.remedius.ro/wishlist/add.json",
+					"protocol": "https",
+					"host": [
+						"www",
+						"remedius",
+						"ro"
+					],
+					"path": [
+						"wishlist",
+						"add.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove from favorites",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://www.remedius.ro/wishlist/delete.json?items[0][product_id]=2222",
+					"protocol": "https",
+					"host": [
+						"www",
+						"remedius",
+						"ro"
+					],
+					"path": [
+						"wishlist",
+						"delete.json"
+					],
+					"query": [
+						{
+							"key": "items[0][product_id]",
+							"value": "2222"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
